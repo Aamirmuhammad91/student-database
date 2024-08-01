@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useState, useEffect } from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import StudentDetails from './components/StudentDetails';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { loadData, saveData } from './dataStorage';
 
-function App() {
+export const App = () => {
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const loadedData = await loadData();
+      setStudents(loadedData);
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    saveData(students);
+  }, [students]);
+
+  const addStudent = (student) => {
+    setStudents([...students, student]);
+  };
+
+  const updateStudent = (updatedStudent) => {
+    setStudents(students.map((student) => (student.id === updatedStudent.id ? updatedStudent : student)));
+  };
+
+  const deleteStudent = (id) => {
+    setStudents(students.filter((student) => student.id !== id));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<LandingPage students={students} addStudent={addStudent} updateStudent={updateStudent} deleteStudent={deleteStudent} />} />
+        <Route path="/student/:studentId" element={<StudentDetails students={students} />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
-}
-
-export default App;
+};
