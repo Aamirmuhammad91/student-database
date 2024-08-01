@@ -100,7 +100,22 @@ const StudentModal = ({ open, handleClose, handleSave, student }) => {
 
   return (
     <Modal open={open} onClose={handleClose}>
-      <Box sx={{ p: 4, bgcolor: 'background.paper', margin: 'auto', maxWidth: 400, mt: 10 }}>
+      <Box
+        sx={{
+          p: 2,
+          bgcolor: 'background.paper',
+          margin: 'auto',
+          maxWidth: 600,
+          width: '90%',
+          mt: 10,
+          borderRadius: 1,
+          boxShadow: 24,
+          display: 'flex',
+          flexDirection: 'column',
+          maxHeight: '80vh',
+          overflowY: 'auto',
+        }}
+      >
         <Typography variant="h6" component="h2">
           Student Information
         </Typography>
@@ -111,7 +126,7 @@ const StudentModal = ({ open, handleClose, handleSave, student }) => {
         <TextField label="Class" value={classField} onChange={(e) => setClassField(e.target.value)} fullWidth margin="normal" />
         <TextField label="Address" value={address} onChange={(e) => setAddress(e.target.value)} fullWidth margin="normal" />
         <TextField label="Father Name" value={fatherName} onChange={(e) => setFatherName(e.target.value)} fullWidth margin="normal" />
-        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
+        <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between', bottom: 0, bgcolor: 'background.paper', pb: 2 }}>
           <Button variant="contained" onClick={handleSubmit}>
             Save
           </Button>
