@@ -1,0 +1,62 @@
+{
+  "name": "student-database",
+  "version": "0.1.0",
+  "private": true,
+  "main": "public/main.js",
+  "description": "a database for students details",
+  "author": "Aamir Muhammad",
+  "homepage": ".",
+  "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.15.20",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "material-react-table": "^2.13.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.25.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "export BROWSER=none && react-scripts start",
+    "start-electron": "export ELECTRON_START_URL=http://localhost:3000 && electron .",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "package": "electron-builder build --win --linux -c.extraMetadata.main=build/main.js --publish never",
+    "publish": "electron-builder build --win --linux --publish always"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "win": {},
+    "linux": {},
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ]
+  }
+}
